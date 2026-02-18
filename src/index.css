@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer utilities {
+    .step-active {
+        @apply ring-4 ring-offset-2 ring-blue-500/20 shadow-lg border-blue-500 text-blue-600 bg-white;
+    }
+
+    .step-inactive {
+        @apply text-slate-400 border-slate-200 bg-slate-50;
+    }
+
+    .step-completed {
+        @apply text-green-600 border-green-200 bg-green-50;
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "AuditPro: CSV/Excel Auditor",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "High-precision browser-based auditing tool for Excel/CSV files.",
+  "action": {
+    "default_icon": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": []
+}
