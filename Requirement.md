@@ -66,4 +66,4 @@ Interactive results table with mismatch diagnostics and a final "Export Report" 
 ## Security & Privacy
 
 * **Local Processing**: Zero data leaves the user's browser.
-* **Persistence**: `chrome.storage.local` saves user-defined mapping templates for recurring audits.
+* **Persistence**: `chrome.storage.local` saves user-defined mapping templates for recurring audits.guys

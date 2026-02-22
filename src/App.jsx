@@ -123,6 +123,45 @@ function App() {
         }, 1500);
     };
 
+    const handleExport = () => {
+        if (results.length === 0) return;
+
+        try {
+            const exportData = [];
+
+            // 1. Header Row
+            const header = [
+                `Identifier (${primaryKey})`,
+                'Discrepancy in Column',
+                ...files.map(f => `Value in ${f.name}`)
+            ];
+            exportData.push(header);
+
+            // 2. Data Rows (One row per mismatch per key)
+            results.forEach(res => {
+                res.mismatchedCols.forEach(col => {
+                    const row = [
+                        res.key,
+                        col,
+                        ...res.files.map(f => f ? f[col] : 'MISSING')
+                    ];
+                    exportData.push(row);
+                });
+            });
+
+            // 3. Create Workbook
+            const ws = XLSX.utils.aoa_to_sheet(exportData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Audit Discrepancies");
+
+            // 4. Download
+            XLSX.writeFile(wb, `Audit_Report_${new Date().toISOString().split('T')[0]}.xlsx`);
+        } catch (error) {
+            console.error("Export failed:", error);
+            alert("Failed to export report. Please check console for details.");
+        }
+    };
+
     const resetAudit = () => {
         setSearchTerm('');
         setResults([]);
@@ -470,7 +509,10 @@ function App() {
                                 <button className="px-4 py-2.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium rounded-lg transition-colors flex items-center gap-2" onClick={resetAudit}>
                                     <RefreshCw size={18} /> New Audit
                                 </button>
-                                <button className="px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md shadow-green-500/20 flex items-center gap-2 transition-all active:scale-95">
+                                <button
+                                    className="px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-md shadow-green-500/20 flex items-center gap-2 transition-all active:scale-95"
+                                    onClick={handleExport}
+                                >
                                     <Download size={18} /> Export Report
                                 </button>
                             </div>

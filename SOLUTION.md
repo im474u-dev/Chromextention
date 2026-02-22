@@ -123,13 +123,21 @@ node generate_test_data.js
     4. Chrome generates a `.crx` file and a `.pem` (key) file.
     5. Send the `.crx` file to users. They drag-and-drop it into `chrome://extensions/` to install.
 
-### Option C: Developer Mode (Source Sharing)
+### Option C: GitHub Releases (Best for direct sharing)
 
 * **Cost**: Free.
+* **Pros**: Permanent download link, version history, professional appearance.
 * **Steps**:
-    1. Send the zipped `dist` folder to users.
-    2. They unzip it.
-    3. Load via "Load Unpacked" (as done during development).
+    1. **Create a Zip**: We generated `AuditPro_v1.0.0.zip` for you (contains `dist/` files).
+    2. **Push Code**: Push your source code to GitHub (see Section 8).
+    3. **Create Release**:
+        * Go to your repository on GitHub.
+        * Click **Releases** (right sidebar) -> **Draft a new release**.
+        * Tag version: `v1.0.0`
+        * Title: `v1.0.0 - Initial Public Release`
+        * **Attach binaries**: Drag & drop `AuditPro_v1.0.0.zip` here.
+        * Click **Publish release**.
+    4. **Share**: Users can allow download the `.zip`, unzip it, and load it via `chrome://extensions` -> **Load Unpacked**.
 
 ### Option D: Microsoft Edge Add-ons Store (Official & Free)
 
